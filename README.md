@@ -116,9 +116,9 @@ Chat content is never stored.
 ```mermaid
 flowchart LR
   A["Client (Next.js)"] -->|Socket.IO join_queue| B["Node.js Server"]
-  B -->|LPUSH (user payload)| C["Redis Queue (anonchat:queue)"]
-  B -->|LRANGE (top 50)| C
-  B -->|Compatibility + block checks| B
+  B -->|LPUSH user payload| C["Redis Queue anonchat:queue"]
+  B -->|LRANGE top 50| C
+  B -->|Compatibility and block checks| B
   B -->|LREM matched partner| C
   B -->|Socket.IO match_found| A
 ```
